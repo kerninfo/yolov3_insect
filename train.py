@@ -24,6 +24,8 @@ VALIDDIR = 'insects/val'
 
 # train.py
 if __name__ == '__main__':
+    use_gpu = False
+    place = fluid.CUDAPlace(0) if use_gpu else fluid.CPUPlace()
     with fluid.dygraph.guard():
         model = YOLOv3('yolov3', num_classes = NUM_CLASSES, is_train=True)
         opt = fluid.optimizer.Momentum(
